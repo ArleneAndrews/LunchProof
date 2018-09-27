@@ -17,7 +17,13 @@ db = SQLAlchemy(app)
 class Spot(db.Model):
     spot = db.Column(db.String(80), unique=True, nullable=False, primary_key=True)
     addy = db.Column(db.String(80), unique=True, nullable=False)
-    notes = db.Column(db.String(250), unique=False, nullable=True)
+    notes = db.Column(db.String(250), unique=False, nullable=False)
+
+    def __init__(self, spot=None, addy=None, notes=None):
+        self.spot = spot
+        self.addy = addy
+        self.notes = notes
+
 
     def __repr__(self):
         return "<Name: {}>".format(self.spot)
@@ -27,6 +33,8 @@ def home():
     if request.form:
         spot = Spot(spot=request.form.get("spot"))
         db.session.add(spot)
+        # db.session.add(addy)
+        # db.session.add(notes)
         db.session.commit()
     return render_template("index.html")
   
