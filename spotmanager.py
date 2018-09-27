@@ -15,17 +15,17 @@ app.config["SQLALCHEMY_DATABASE_URI"] = database_file
 db = SQLAlchemy(app)
 
 class Spot(db.Model):
-    name = db.Column(db.String(80), unique=True, nullable=False, primary_key=True)
+    spot = db.Column(db.String(80), unique=True, nullable=False, primary_key=True)
     addy = db.Column(db.String(80), unique=True, nullable=False)
     notes = db.Column(db.String(250), unique=False, nullable=True)
 
     def __repr__(self):
-        return "<Name: {}>".format(self.name)
+        return "<Name: {}>".format(self.spot)
 
 @app.route("/", methods=["GET", "POST"])
 def home():
    if request.form:
-        spot = Spot(name=request.form.get("name"))
+        spot = Spot(spot=request.form.get("spot"))
         db.session.add(spot)
         db.session.commit()
     return render_template("index.html")
