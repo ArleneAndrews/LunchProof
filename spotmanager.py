@@ -23,7 +23,7 @@ class Spot(db.Model):
 @app.route("/", methods=["GET", "POST"])
 def home():
     if request.form:
-        venue = Spot(place=request.form.get("place"))
+        venue = Spot(place=request.form.get("venue"))
         db.session.add(venue)
         db.session.commit()
     return render_template("index.html")
