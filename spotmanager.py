@@ -16,25 +16,15 @@ db = SQLAlchemy(app)
 
 class Spot(db.Model):
     place = db.Column(db.String(80), unique=True, nullable=False, primary_key=True)
-    # addy = db.Column(db.String(80), unique=True, nullable=False)
-    # notes = db.Column(db.String(250), unique=False, nullable=False)
-
-    """ def __init__(self, spot=None):
-        self.spot = spot
-        # self.addy = addy
-        # self.notes = notes """
-
-
+   
     def __repr__(self):
         return "<Name: {}>".format(self.place)
 
 @app.route("/", methods=["GET", "POST"])
 def home():
     if request.form:
-        spot = Spot(spot=request.form.get("place"))
-        db.session.add(spot)
-        # db.session.add(addy)
-        # db.session.add(notes)
+        venue = Spot(spot=request.form.get("place"))
+        db.session.add(venue)
         db.session.commit()
     return render_template("index.html")
   
