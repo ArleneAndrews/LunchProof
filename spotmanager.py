@@ -4,7 +4,7 @@ from flask import Flask
 from flask import render_template
 from flask import request
 
-from flask_sqlalchemy import SQLAlchemy, Model # added to avid conflicts in the future
+from flask_sqlalchemy import SQLAlchemy
 
 project_dir = os.path.dirname(os.path.abspath(__file__))
 database_file = "sqlite:///{}".format(os.path.join(project_dir, "spotdatabase.db"))
@@ -23,7 +23,7 @@ class Spot(db.Model):
 @app.route("/", methods=["GET", "POST"])
 def home():
     if request.form:
-        venue = Spot(spot=request.form.get("place"))
+        venue = Spot(place=request.form.get("place"))
         db.session.add(venue)
         db.session.commit()
     return render_template("index.html")

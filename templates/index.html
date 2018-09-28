@@ -1,13 +1,8 @@
 <html>
-<body>
-        <form method="POST" action="/">
-            Spot: <input type="text" name="place"><br>
-            <input type="submit" value="Add">
-        </form>
- 
-  <h1>Spots</h1>
-    {% for spot in Spots %}
-      <p>{{spot.spot}}</p>
-    {% endfor %}
-</body>
+  <body>
+    <form method="POST" action="/">
+      <input type="text" name="venue">
+      <input type="submit" value="Add">
+    </form>
+  </body>
 </html>
