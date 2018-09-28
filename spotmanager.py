@@ -26,7 +26,8 @@ def home():
         venue = Spot(place=request.form.get("venue"))
         db.session.add(venue)
         db.session.commit()
-    return render_template("index.html")
+        spots = Spot.query.all()
+    return render_template("index.html", spots=spots)
   
 if __name__ == "__main__":
     app.run(debug=True)
