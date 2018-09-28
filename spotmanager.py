@@ -24,9 +24,11 @@ class Spot(db.Model):
 def home():
     if request.form:
         venue = Spot(place=request.form.get("place"))
+        print venue
         db.session.add(venue)
         db.session.commit()
-    return render_template("index.html")
+    spots = Spot.query.all()
+    return render_template("index.html", spots=spots)
   
 if __name__ == "__main__":
     app.run(debug=True)
