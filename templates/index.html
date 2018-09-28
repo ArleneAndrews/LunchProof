@@ -4,5 +4,10 @@
       <input type="text" name="venue">
       <input type="submit" value="Add">
     </form>
-  </body>
+
+    <h1> Spots</h1>
+      {% for spot in spots %}
+        <p> {{spot.place}}</p>
+      {% endfor %}
+      </body>
 </html>
