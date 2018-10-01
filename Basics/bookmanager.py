@@ -27,7 +27,7 @@ def home():
         db.session.add(book)
         db.session.commit()
         books = Book.query.all()
-    return render_template("index.html")
+    return render_template("index.html", books=books)
   
 if __name__ == "__main__":
     app.run(debug=True)
