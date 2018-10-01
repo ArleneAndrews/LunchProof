@@ -5,6 +5,7 @@ from flask import render_template
 from flask import request
 
 from flask_sqlalchemy import SQLAlchemy
+Books =''
 
 project_dir = os.path.dirname(os.path.abspath(__file__))
 database_file = "sqlite:///{}".format(os.path.join(project_dir, "bookdatabase.db"))
@@ -27,7 +28,7 @@ def home():
         db.session.add(book)
         db.session.commit()
         books = Book.query.all()
-    return render_template("index.html", books=books)
+    return render_template("index.html")
   
 if __name__ == "__main__":
     app.run(debug=True)
