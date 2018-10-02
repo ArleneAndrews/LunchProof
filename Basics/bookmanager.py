@@ -24,7 +24,6 @@ class Book(db.Model):
 def home():
     if request.form:
         book = Book(title=request.form.get("title"))
-        print("Step1")
         db.session.add(book)
         db.session.commit()
     book = Book.query.all()
