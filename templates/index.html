@@ -8,6 +8,11 @@
     <h1>Spots</h1>
     {% for spot in spots %}
       <p>{{spot.place}}</p>
+      <form method="POST" action="./update">
+        <input type="hidden" value="{{spot.place}}" name="oldtitle">
+        <input type="text" value="{{spot.place}}" name="newtitle">
+        <input type="submit" value="Update">
+      </form>
     {% endfor %}
   </body>
 </html>
