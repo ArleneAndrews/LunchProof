@@ -24,10 +24,11 @@ class Book(db.Model):
 def home():
     if request.form:
         book = Book(title=request.form.get("title"))
+        print("Step1")
         db.session.add(book)
         db.session.commit()
-        books = Book.query.all()
-    return render_template("index.html", books=books)
+        book = book.query.all()
+    return render_template("index.html", books=book)
   
 if __name__ == "__main__":
     app.run(debug=True)
