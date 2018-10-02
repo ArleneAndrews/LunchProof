@@ -27,7 +27,7 @@ def home():
         print("Step1")
         db.session.add(book)
         db.session.commit()
-        book = book.query.all()
+    book = Book.query.all()
     return render_template("index.html", books=book)
   
 if __name__ == "__main__":
