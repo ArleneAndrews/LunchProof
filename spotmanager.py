@@ -3,6 +3,7 @@ import os
 from flask import Flask
 from flask import render_template
 from flask import request
+from flask import redirect
 
 from flask_sqlalchemy import SQLAlchemy
 
@@ -28,6 +29,15 @@ def home():
         db.session.commit()
     spots = Spot.query.all()
     return render_template("index.html", spots=spots)
+
+@app.route("/update", methods=["POST"])
+def update():
+    newname = request.form.get("newname")
+    oldname = request.form.get("oldname")
+    venue = Spot.query.filter_by(place=oldname).first()
+    Spot.venue = newname
+    db.session.commit()
+    return redirect("/")
   
 if __name__ == "__main__":
     app.run(debug=True)

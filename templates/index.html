@@ -9,8 +9,8 @@
     {% for spot in spots %}
       <p>{{spot.place}}</p>
       <form method="POST" action="./update">
-        <input type="hidden" value="{{spot.place}}" name="oldtitle">
-        <input type="text" value="{{spot.place}}" name="newtitle">
+        <input type="hidden" value="{{spot.place}}" name="oldname">
+        <input type="text" value="{{spot.place}}" name="newname">
         <input type="submit" value="Update">
       </form>
     {% endfor %}
