@@ -8,6 +8,14 @@ html, body {
   padding: 0;
 }*/
 
+form { 
+  display: inline;
+}
+
+h1 {
+   color: chartreuse;
+}
+
 .slidecontainer {
   width: 90%; /* Width of the outside container */
   margin: auto;

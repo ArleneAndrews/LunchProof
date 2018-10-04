@@ -1,11 +1,17 @@
 <html>
+  <head>
+      <link rel="stylesheet" href="{{ url_for( 'static', filename='styles/style.css') }}">
+      <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
+  </head>
   <body>
+    
+    <h1>Add a new Spot!</h1>
     <form method="POST" action="/">
       <input type="text" name="venue">
       <input type="submit" value="Add">
     </form>
 
-    <h1>Spots</h1>
+    <h3>Visited Spots</h3>
     {% for spot in spots %}
       <p>{{spot.place}}</p><br>
       <form method="POST" action="./update">
