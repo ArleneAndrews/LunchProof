@@ -34,8 +34,8 @@ def home():
 def update():
     newname = request.form.get("newname")
     oldname = request.form.get("oldname")
-    venue = Spot.query.filter_by(place=oldname).first()
-    Spot.venue = newname
+    spot = Spot.query.filter_by(place=oldname).first()
+    spot.place = newname
     db.session.commit()
     return redirect("/")
   
