@@ -23,20 +23,29 @@ class Book(db.Model):
 
 @app.route("/", methods=["GET", "POST"])
 def home():
-    if request.form:
-        book = Book(title=request.form.get("title"))
-        db.session.add(book)
-        db.session.commit()
+    books = None
+    try:
+        if request.form:
+            book = Book(title=request.form.get("title"))
+            db.session.add(book)
+            db.session.commit()
+        except Exception as e:
+            print("Failed to add book")
+            print(e)
     book = Book.query.all()
     return render_template("index.html", books=book)
 
 @app.route("/update", methods=["POST"])
 def update():
-    newtitle = request.form.get("newtitle")
-    oldtitle = request.form.get("oldtitle")
-    book = Book.query.filter_by(title=oldtitle).first()
-    book.title = newtitle
-    db.session.commit()
+    try:
+            newtitle = request.form.get("newtitle")
+            oldtitle = request.form.get("oldtitle")
+            book = Book.query.filter_by(title=oldtitle).first()
+            book.title = newtitle
+            db.session.commit()
+         except Exception as e:
+        print("Couldn't update book title")
+        print(e)
     return redirect("/")
 
 @app.route("/delete", methods=["POST"])
