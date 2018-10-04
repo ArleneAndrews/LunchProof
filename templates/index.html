@@ -7,12 +7,15 @@
 
     <h1>Spots</h1>
     {% for spot in spots %}
-      <p>{{spot.place}}</p>
+      <p>{{spot.place}}</p><br>
       <form method="POST" action="./update">
         <input type="hidden" value="{{spot.place}}" name="oldname">
         <input type="text" value="{{spot.place}}" name="newname">
         <input type="submit" value="Update">
       </form>
+      <form method="POST" action="./delete">
+        <input type="hidden" value="{{spot.place}}" name="place">
+        <input type="submit" value="Delete">
     {% endfor %}
   </body>
 </html>

@@ -38,6 +38,14 @@ def update():
     spot.place = newname
     db.session.commit()
     return redirect("/")
+
+@app.route("/delete", methods=["POST"])
+def delete():
+    place = request.form.get("place")
+    spot = Spot.query.filter_by(place=place).first()
+    db.session.delete(spot)
+    db.session.commit()
+    return redirect("/")
   
 if __name__ == "__main__":
     app.run(debug=True)
