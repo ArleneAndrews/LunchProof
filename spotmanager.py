@@ -23,20 +23,29 @@ class Spot(db.Model):
 
 @app.route("/", methods=["GET", "POST"])
 def home():
+    spots = None
     if request.form:
-        venue = Spot(place=request.form.get("venue"))
-        db.session.add(venue)
-        db.session.commit()
+        try:
+            venue = Spot(place=request.form.get("venue"))
+            db.session.add(venue)
+            db.session.commit()
+        except Exception as e:
+            print("Failed to add spot")
+            print(e)
     spots = Spot.query.all()
     return render_template("index.html", spots=spots)
 
 @app.route("/update", methods=["POST"])
 def update():
-    newname = request.form.get("newname")
-    oldname = request.form.get("oldname")
-    spot = Spot.query.filter_by(place=oldname).first()
-    spot.place = newname
-    db.session.commit()
+    try:
+        newname = request.form.get("newname")
+        oldname = request.form.get("oldname")
+        spot = Spot.query.filter_by(place=oldname).first()
+        spot.place = newname
+        db.session.commit()
+    except Exception as e:
+            print("Failed to update spot")
+            print(e)
     return redirect("/")
 
 @app.route("/delete", methods=["POST"])
