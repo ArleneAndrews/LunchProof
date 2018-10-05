@@ -24,8 +24,8 @@ class Book(db.Model):
 @app.route("/", methods=["GET", "POST"])
 def home():
     books = None
-    try:
-        if request.form:
+    if request.form:
+        try:
             book = Book(title=request.form.get("title"))
             db.session.add(book)
             db.session.commit()
@@ -43,7 +43,7 @@ def update():
             book = Book.query.filter_by(title=oldtitle).first()
             book.title = newtitle
             db.session.commit()
-         except Exception as e:
+    except Exception as e:
         print("Couldn't update book title")
         print(e)
     return redirect("/")
