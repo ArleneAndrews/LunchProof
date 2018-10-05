@@ -11,15 +11,20 @@
 
     <h1>Books</h1>
     {% for book in books %}
-      <p>{{book.title}} {{book.writer}}</p>
+      <p>{{book.title}} <i>{{book.writer}}</i></p>
       <form method="POST" action="./update">
         <input type="hidden" value="{{book.title}}" name="oldtitle">
         <input type="text" value="{{book.title}}" name="newtitle">
-        <input type="submit" value="Update">
+        <input type="submit" value="Update Book">
+      </form>
+      <form method="POST" action="./update">
+        <input type="hidden" value="{{book.writer}}" name="oldwriter">
+        <input type="text" value="{{book.writer}}" name="newwriter">
+        <input type="submit" value="Update Author">
       </form>
       <form method="POST" action="./delete">
         <input type="hidden" value="{{book.title}}" name="title">
-        <input type="submit" value="Delete">
+        <input type="submit" value="Delete Book">
       </form>
     {% endfor %}
   </body>
