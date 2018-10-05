@@ -53,6 +53,19 @@ def update():
         print(e)
     return redirect("/")
 
+@app.route("/updatea", methods=["POST"])
+def updatea():
+    try:
+            newwriter = request.form.get("newwriter")
+            oldwriter = request.form.get("oldwriter")
+            book = Book.query.filter_by(writer=oldwriter).first()
+            book.writer = newwriter
+            db.session.commit()
+    except Exception as e:
+        print("Couldn't update book author")
+        print(e)
+    return redirect("/")
+
 @app.route("/delete", methods=["POST"])
 def delete():
     title = request.form.get("title")
