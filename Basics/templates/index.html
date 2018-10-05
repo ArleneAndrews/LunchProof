@@ -5,12 +5,13 @@
   <body>
     <form method="POST" action="/">
       <input type="text" name="title">
+      <input type="text" name='writer'>
       <input type="submit" value="Add">
     </form>
 
     <h1>Books</h1>
     {% for book in books %}
-      <p>{{book.title}}</p>
+      <p>{{book.title}} {{book.writer}}</p>
       <form method="POST" action="./update">
         <input type="hidden" value="{{book.title}}" name="oldtitle">
         <input type="text" value="{{book.title}}" name="newtitle">
