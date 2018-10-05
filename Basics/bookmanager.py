@@ -17,9 +17,11 @@ db = SQLAlchemy(app)
 
 class Book(db.Model):
     title = db.Column(db.String(80), unique=True, nullable=False, primary_key=True)
+    writer = db.Column(db.String(80), nullable=False)
 
     def __repr__(self):
-        return "<Title: {}>".format(self.title)
+        bookInfo = "<Title: {}>".format(self.title), "<Author: {}>".format(self.writer)
+        return bookInfo
 
 @app.route("/", methods=["GET", "POST"])
 def home():
