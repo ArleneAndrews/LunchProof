@@ -1,7 +1,7 @@
 import os
 
 from flask import Flask, render_template, request, redirect, url_for, session, flash
-
+from functools import wraps
 from flask_sqlalchemy import SQLAlchemy
 
 project_dir = os.path.dirname(os.path.abspath(__file__))
@@ -20,6 +20,15 @@ class Book(db.Model):
     def __repr__(self):
         bookInfo = "<Title: {}>".format(self.title), "<Author: {}>".format(self.writer)
         return bookInfo
+
+def login_required(f):
+    @wraps(f)
+    def wrap(*args, **kwargs):
+        if 'logged_in' in session:
+                return f(*args, **kwargs)
+        else:
+                flash('Please log in.')
+                return redirect(url_for('login'))
 
 @app.route("/", methods=["GET", "POST"])
 def home():
