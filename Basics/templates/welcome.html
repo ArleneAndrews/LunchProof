@@ -1,18 +1,6 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Book Tutorial Mashup</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
-  </head>
-  <body>
-    <div class="container">
-      <h1>Welcome to Flask!</h2>
-      <br>
-      <p>Click <a href="/">here</a> to go home.</p>
-      {% for message in get_flashed_messages() %}
-          {{ message }}
-          {% endfor %}
-    </div>
-  </body>
-</html>
+{% extends "base.html %}
+{% block content %}
+<h1>Welcome to Flask!</h2>
+  <br>
+  <p>Click <a href="/">here</a> to go home.</p>
+{% end block %}
