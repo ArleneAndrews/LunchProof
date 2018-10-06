@@ -3,6 +3,10 @@
       <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
   </head>
   <body>
+    {% for message in get_flashed_messages() % %}
+    {{ message }}
+    {% endfor %}
+       
     <form method="POST" action="/">
       <input type="text" name="title">
       <input type="text" name='writer'>

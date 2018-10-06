@@ -5,6 +5,10 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
   </head>
   <body>
+    {% for message in get_flashed_messages() % %}
+    {{ message }}
+    {% endfor %}
+    
     <div class="container">
       <h1>Please login</h1>
       <br>
