@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, flash
 
 from flask_sqlalchemy import SQLAlchemy
 
@@ -9,6 +9,7 @@ database_file = "sqlite:///{}".format(os.path.join(project_dir, "bookdatabase.db
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = database_file
+app.secret_key = "Fox&Dragon"
 
 db = SQLAlchemy(app)
 
@@ -82,12 +83,14 @@ def login():
             error = 'Invalid Credentials. Please try again.'
         else:
             session['logged_in'] = True
+            flash('Welcome! You are now logged in.')
             return redirect(url_for('home'))
     return render_template('login.html', error=error)
 
 @app.route('/logout')
 def logout():
     session.pop('logged_in', None)
+    flash('You are now logged out. Thanks for lunch!')
     return redirect(url_for('welcome'))
   
 if __name__ == "__main__":
