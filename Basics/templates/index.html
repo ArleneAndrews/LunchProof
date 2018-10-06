@@ -3,9 +3,11 @@
       <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
   </head>
   <body>
-    {% for message in get_flashed_messages() % %}
+    {% for message in get_flashed_messages() %}
     {{ message }}
     {% endfor %}
+
+    <p>Click <a href = '/logout'>here</a> to logout.</p>
        
     <form method="POST" action="/">
       <input type="text" name="title">

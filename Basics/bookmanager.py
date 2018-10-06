@@ -90,7 +90,7 @@ def login():
 @app.route('/logout')
 def logout():
     session.pop('logged_in', None)
-    flash('You are now logged out. Thanks for lunch!')
+    flash('You are now logged out. Thanks for reading!')
     return redirect(url_for('welcome'))
   
 if __name__ == "__main__":
