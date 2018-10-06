@@ -23,6 +23,10 @@ class Book(db.Model):
         bookInfo = "<Title: {}>".format(self.title), "<Author: {}>".format(self.writer)
         return bookInfo
 
+@app.route('/welcome')
+def welcome():
+    return render_template('welcome.html')
+
 @app.route("/", methods=["GET", "POST"])
 def home():
     books = None
