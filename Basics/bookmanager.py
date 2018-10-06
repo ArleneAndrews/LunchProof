@@ -29,8 +29,10 @@ def login_required(f):
         else:
                 flash('Please log in.')
                 return redirect(url_for('login'))
+    return wrap
 
 @app.route("/", methods=["GET", "POST"])
+@login_required
 def home():
     books = None
     if request.form:
@@ -97,6 +99,7 @@ def login():
     return render_template('login.html', error=error)
 
 @app.route('/logout')
+@login_required
 def logout():
     session.pop('logged_in', None)
     flash('You are now logged out. Thanks for reading!')
