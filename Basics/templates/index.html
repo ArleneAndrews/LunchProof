@@ -11,7 +11,8 @@
 
     <h1>Books</h1>
     {% for book in books %}
-      <p>{{book.title}} <i>{{book.writer}}</i></p>
+    <div><p>{{book.title}} <i>{{book.writer}}</i></p>
+      
       <form method="POST" action="./update">
         <input type="hidden" value="{{book.title}}" name="oldtitle">
         <input type="text" value="{{book.title}}" name="newtitle">
@@ -25,6 +26,6 @@
       <form method="POST" action="./delete">
         <input type="hidden" value="{{book.title}}" name="title">
         <input type="submit" value="Delete Book">
-      </form>
+      </form></div>
     {% endfor %}
 {% endblock %}
