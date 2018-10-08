@@ -9,6 +9,10 @@ database_file = "sqlite:///{}".format(os.path.join(project_dir, "bookdatabase.db
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = database_file
+SQLALCHEMY_BINDS = {
+    'users':        'sqlite:///users.db',
+    'author':      'sqlite:////author.db'
+}
 app.secret_key = "Fox&Dragon"
 
 db = SQLAlchemy(app)
