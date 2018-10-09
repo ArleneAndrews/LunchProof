@@ -20,6 +20,15 @@ class Book(db.Model):
     title = db.Column(db.String(80), unique=True, nullable=False, primary_key=True)
     writer = db.Column(db.String(80), nullable=False)
 
+class Author(db.Model):
+    __bind_key__ = 'author'
+    id = db.Column(db.Integer, unique=True, nullable=False, primary_key=True)
+    prefix = db.Column(db.String(20))
+    givenName = db.Column(db.String(80))
+    midInital = db.Column(db.String(10))
+    surname = db.Column(db.String(80), nullable =False)
+    suffix = db.Column(db.String(20))
+
     def __repr__(self):
         bookInfo = "<Title: {}>".format(self.title), "<Author: {}>".format(self.writer)
         return bookInfo
