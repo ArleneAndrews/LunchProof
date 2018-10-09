@@ -10,7 +10,7 @@ database_file = "sqlite:///{}".format(os.path.join(project_dir, "bookdatabase.db
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = database_file
 SQLALCHEMY_BINDS = {
-    'author':      'sqlite:////author.db'
+    'Author':      'sqlite:////author.db'
 }
 app.secret_key = "Fox&Dragon"
 
@@ -20,14 +20,26 @@ class Book(db.Model):
     title = db.Column(db.String(80), unique=True, nullable=False, primary_key=True)
     writer = db.Column(db.String(80), nullable=False)
 
-class Author(db.Model):
-    __bind_key__ = 'Author'
-    index = db.Column(db.Integer, unique=True, autoincrement=True, nullable=False, primary_key=True)
-    name = db.Column(db.String, nullable =False)
-
     def __repr__(self):
         bookInfo = "<Title: {}>".format(self.title), "<Author: {}>".format(self.writer)
         return bookInfo
+
+class Author(db.Model):
+    __bind_key__ = 'Author'
+    name = db.Column(db.String, nullable =False, primary_key=True)
+
+    def __repr__(self):
+        authorInfo = "<Author: {}>".format(self.name)
+        return authorInfo
+
+class Bind(object):
+    def __init__(self, bind_key):
+        self.bind = db.get_engine(app, bind_key)
+    def execute(self, query, params=None):
+        return db.session.execute(query, params, bind=self.bind)
+
+db.first = Bind('first')
+db.second = Bind('second')
 
 def login_required(f):
     @wraps(f)
