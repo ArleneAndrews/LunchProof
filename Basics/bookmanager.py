@@ -22,7 +22,7 @@ class Book(db.Model):
 
 class Author(db.Model):
     __bind_key__ = 'Author'
-    index = db.Column(db.Integer, unique=True, nullable=False, primary_key=True)
+    index = db.Column(db.Integer, unique=True, autoincrement=True, nullable=False, primary_key=True)
     name = db.Column(db.String, nullable =False)
 
     def __repr__(self):
@@ -45,13 +45,11 @@ def home():
     books = None
     if request.form:
         try:
-            
             book = Book(
                 title=request.form.get("title"),
                 writer=request.form.get("writer")
                 )
             db.session.add(book)
-            db.session.commit()
             author=Author(
                 name=request.form.get("writer")
             )
