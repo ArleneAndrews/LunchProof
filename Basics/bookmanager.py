@@ -22,7 +22,7 @@ class Book(db.Model):
 
 class Author(db.Model):
     __bind_key__ = 'author'
-    id = db.Column(db.Integer, unique=True, nullable=False, primary_key=True)
+    index = db.Column(db.Integer, unique=True, nullable=False, primary_key=True)
     prefix = db.Column(db.String(20))
     givenName = db.Column(db.String(80))
     midInital = db.Column(db.String(10))
