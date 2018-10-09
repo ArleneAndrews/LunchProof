@@ -21,13 +21,9 @@ class Book(db.Model):
     writer = db.Column(db.String(80), nullable=False)
 
 class Author(db.Model):
-    __bind_key__ = 'author'
+    __bind_key__ = 'Author'
     index = db.Column(db.Integer, unique=True, nullable=False, primary_key=True)
-    prefix = db.Column(db.String(20))
-    givenName = db.Column(db.String(80))
-    midInital = db.Column(db.String(10))
-    surname = db.Column(db.String(80), nullable =False)
-    suffix = db.Column(db.String(20))
+    name = db.Column(db.String, nullable =False)
 
     def __repr__(self):
         bookInfo = "<Title: {}>".format(self.title), "<Author: {}>".format(self.writer)
@@ -49,15 +45,15 @@ def home():
     books = None
     if request.form:
         try:
+            author=Author(
+                name=request.form.get("writer")
+            )
             book = Book(
                 title=request.form.get("title"),
                 writer=request.form.get("writer")
                 )
-            author = Author(
-                name=request.form.get("writer")
-            )
-            db.session.add(book)
             db.session.add(author)
+            db.session.add(book)
             db.session.commit()
         except Exception as e:
             print("Failed to add book")
