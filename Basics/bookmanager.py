@@ -45,15 +45,17 @@ def home():
     books = None
     if request.form:
         try:
-            author=Author(
-                name=request.form.get("writer")
-            )
+            
             book = Book(
                 title=request.form.get("title"),
                 writer=request.form.get("writer")
                 )
-            db.session.add(author)
             db.session.add(book)
+            db.session.commit()
+            author=Author(
+                name=request.form.get("writer")
+            )
+            db.session.add(author)
             db.session.commit()
         except Exception as e:
             print("Failed to add book")
