@@ -44,10 +44,6 @@ def home():
                 writer=request.form.get("writer")
                 )
             db.session.add(book)
-            author=Author(
-                name=request.form.get("writer")
-            )
-            db.session.add(author)
             db.session.commit()
         except Exception as e:
             print("Failed to add book")
