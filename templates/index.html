@@ -1,9 +1,6 @@
-<html>
-  <head>
-      <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
-      <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
-  </head>
-  <body>
+{% extends "base.html" %}
+{% block content %}
+<p>Click <a href = '/logout'>here</a> to logout.</p>
     <div class="slidecontainer">
         Travel range
         <br>
@@ -36,15 +33,19 @@
 
     <h3>Visited Spots</h3>
     {% for spot in spots %}
-      <p>{{spot.place}}</p><br>
+      <p>{{spot.place}}</p>
       <form method="POST" action="./update">
         <input type="hidden" value="{{spot.place}}" name="oldname">
         <input type="text" value="{{spot.place}}" name="newname">
         <input type="submit" value="Update">
       </form>
+      <form method="POST" action="./updatea">
+        <input type="hidden" value="{{book.writer}}" name="oldwriter">
+        <input type="text" value="{{book.writer}}" name="newwriter">
+        <input type="submit" value="Update Author">
+      </form>
       <form method="POST" action="./delete">
         <input type="hidden" value="{{spot.place}}" name="place">
         <input type="submit" value="Delete">
     {% endfor %}
-  </body>
-</html>
+    {% endblock %}
