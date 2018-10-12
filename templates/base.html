@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Random Lunch App v0.0.1</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+  </head>
+  <body>
+      <div class ="container">
+        <!--Child-->
+            {% block content %}{% endblock %}<p></p>
+        <!--Errors-->
+            {% if error %}
+                <p class="error"><strong>Error:</strong> {{ error }}
+            {% endif %}
+        <!--Messages-->
+            {% for message in get_flashed_messages() %}
+                {{ message }}
+            {% endfor %}
+        </div>
+    </body>
+</html>

@@ -1,13 +1,68 @@
-<html>
-  <body>
+{% extends "base.html" %}
+{% block content %}
+<p>Click <a href = '/logout'>here</a> to logout.</p>
+    <div class="slidecontainer">
+        Travel range
+        <br>
+        <input id="distance" class="slider" type="range" min="500" max="50000" value="1700" />
+        
+  
+        <form name="units" action="#">
+            <label>
+                <input name="group1" type="radio" value="km" checked />
+                <span>km</span>
+            </label>
+            <label>
+                <input name="group1" type="radio" value="miles" />
+                <span>miles</span>
+            </label>
+            <br>
+            <button type="button" id="options" data-rel="popup" alt="Show all places" onclick='geoFindMe(this);'>Show me!</a>
+            <button type="button"  id="feedMe" data-rel="popup" alt="Choose a random location" onclick='geoFindMe(this);'>Feed me!</a>
+            </form>
+          </div>
+    <br>
+    <div id="out"></div>
+    <div id="out2"></div>
+    <div id="out3"></div>
+    <h2>Add a new Spot!</h2>
     <form method="POST" action="/">
       <input type="text" name="venue">
       <input type="submit" value="Add">
     </form>
 
+<<<<<<< HEAD
     <h1> Spots</h1>
       {% for spot in spots %}
         <p> {{spot.place}}</p>
       {% endfor %}
       </body>
 </html>
+=======
+    <h3>Visited Spots</h3>
+    {% for spot in spots %}
+      <p><div class="card">
+      <h2>{{spot.place}}</h2>
+      <button id="myBtn">Update or delete this Spot</button>
+      <script>document.getElementById("myBtn").addEventListener
+      ("click", function(event){
+        //Stops the form submitting.
+        event.stopImmediatePropagation();
+            //Do the checks here.
+            //Sends the form.
+        document.getelementById("myForm").sumbit();}
+        );
+        </script>
+      </div></p>
+      <form method="POST" action="./update">
+        <input type="hidden" value="{{spot.place}}" name="oldname">
+        <input type="text" value="{{spot.place}}" name="newname">
+        <input type="submit" value="Update">
+      </form>
+      <form method="POST" action="./delete">
+        <input type="hidden" value="{{spot.place}}" name="place">
+        <input type="submit" value="Delete">
+      </form>
+    {% endfor %}
+    {% endblock %}
+>>>>>>> 4a8feb36e809d45d2e1ccf5fd16c5745a5f04ec5
