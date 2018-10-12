@@ -17,11 +17,11 @@ db = SQLAlchemy(app)
 class Spot(db.Model):
     place = db.Column(db.String(80), unique=True, nullable=False, primary_key=True)
     address = db.Column(db.String(80), unique=True, nullable=False)
-    phone = db.Column(db.Interger, unique=True)
-    lat = db.Column(db.Interger, unique=True, nullable=False)
-    lon = db.Column(db.Interger, unique=True, nullable=False)
-    visited = db.Column(db.Boolean, unique=True, nullable=False)
-    rating = db.Column(db.String(80), unique=True, nullable=False)
+    phone = db.Column(db.Int, unique=True)
+    lat = db.Column(db.Real, nullable=False)
+    lon = db.Column(db.Read, nullable=False)
+    visited = db.Column(db.INT, unique=True, nullable=False)
+    rating = db.Column(db.INT, unique=True, nullable=False)
     tags = db.Column(db.String(80), unique=True, nullable=False)
    
     def __repr__(self):
