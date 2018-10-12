@@ -18,14 +18,14 @@ class Spot(db.Model):
     place = db.Column(db.String(80), unique=True, nullable=False, primary_key=True)
    
     def __repr__(self):
-        return "<Name: {}>".format(self.place)
+        return "<Name: {}>".format(self.spot)
 
 @app.route("/", methods=["GET", "POST"])
 def home():
     if request.form:
-        venue = Spot(place=request.form.get("place"))
-        print venue
-        db.session.add(venue)
+        spot = Spot(place=request.form.get("spot"))
+        print spot
+        db.session.add(spot)
         db.session.commit()
     spots = Spot.query.all()
     return render_template("index.html", spots=spots)
