@@ -33,7 +33,9 @@
 
     <h3>Visited Spots</h3>
     {% for spot in spots %}
-      <p>{{spot.place}}</p>
+      <p><div class="card">
+      <h2>{{spot.place}}</h2>
+      </div></p>
       <form method="POST" action="./update">
         <input type="hidden" value="{{spot.place}}" name="oldname">
         <input type="text" value="{{spot.place}}" name="newname">
