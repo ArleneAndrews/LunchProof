@@ -10,7 +10,7 @@ database_file = "sqlite:///{}".format(os.path.join(project_dir, "spotdatabase.db
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = database_file
 
-app.secret_key = "Fox&Dragon"
+#app.secret_key = "Fox&Dragon"
 
 db = SQLAlchemy(app)
 
