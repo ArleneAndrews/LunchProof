@@ -37,24 +37,17 @@ def login_required(f):
                 return redirect(url_for('login'))
     return wrap
 
-def check_admin():
-    """
-    prevent unauthorized changes
-    """
-    if not current_user.is_admin:
-        abort(403)
-
 @app.route("/", methods=["GET", "POST"])
 @login_required
 def home():
     spots = None
-    #add_spot()
+    #list_spots()
     if request.form:
+    #add_spot()
         spot = Spot(place=request.form.get("spot"))
         print spot
         db.session.add(spot)
         db.session.commit()
-    #add_spot()
     spots = Spot.query.all()
     return render_template("index.html", spots=spots, title="Book Tutorial Mashup")
 
@@ -64,8 +57,7 @@ def list_spots():
     """
     list all the spots in the db
     """
-    #check_admin()
-
+  
     spots = Spot.query.all()
     return render_template("index.html", spots=spots, title="Spots")
     
@@ -75,8 +67,7 @@ def add_spot():
     """
     add a spot into the database
     """
-    #check_admin()
-
+  
     add_spot = True
     # instantiate the form as a SpotForm() 
 
@@ -90,7 +81,7 @@ def add_spot():
         )
         db.session.add(venue)
         db.session.commit()
-        flash('Successfully added a new Spot to the list')
+        flash('Successfully added a new Spot ' + venue.name + ' to the list')
     except Exception as e:
         print("Failed to add spot")
         print(e)
@@ -106,7 +97,6 @@ def update(id):
     """
     Create a route to display/edit spots on a page
     """
-    #check_admin()
     #add_spot = False
     try:
         newname = request.form.get("newname")
