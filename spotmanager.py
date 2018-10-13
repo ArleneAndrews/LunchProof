@@ -10,19 +10,19 @@ database_file = "sqlite:///{}".format(os.path.join(project_dir, "spotdatabase.db
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = database_file
 
-# app.secret_key = "Fox&Dragon"
+app.secret_key = "Fox&Dragon"
 
 db = SQLAlchemy(app)
 
 class Spot(db.Model):
     place = db.Column(db.String(80), unique=True, nullable=False, primary_key=True)
-    """ address = db.Column(db.String(80), unique=True, nullable=False)
+    address = db.Column(db.String(80), unique=True)
     phone = db.Column(db.INT, unique=True)
-    lat = db.Column(db.INT, nullable=False)
-    lon = db.Column(db.INT, nullable=False)
-    visited = db.Column(db.INT, unique=True, nullable=False)
+    lat = db.Column(db.INT)
+    lon = db.Column(db.INT)
+    visit = db.Column(db.INT, unique=True, nullable=False)
     rating = db.Column(db.INT, unique=True, nullable=False)
-    tags = db.Column(db.String(80), unique=True, nullable=False) """
+    tags = db.Column(db.String(80))
    
     def __repr__(self):
         return "<Name: {}>".format(self.place)

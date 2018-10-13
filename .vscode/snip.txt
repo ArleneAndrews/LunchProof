@@ -1,0 +1,31 @@
+# TODO: Add other adjustments
+@app.route("/updatea", methods=["POST"])
+def updatea():
+    try:
+            newwriter = request.form.get("newwriter")
+            oldwriter = request.form.get("oldwriter")
+            book = Book.query.filter_by(writer=oldwriter).first()
+            book.writer = newwriter
+            db.session.commit()
+    except Exception as e:
+        print("Couldn't update book author")
+        print(e)
+    return redirect("/")
+
+    index
+    <form method="POST" action="./updatea">
+        <input type="hidden" value="{{book.writer}}" name="oldwriter">
+        <input type="text" value="{{book.writer}}" name="newwriter">
+        <input type="submit" value="Update Author">
+      </form>
+
+      <script>
+        var spot[spot.place] = {{spot.place}};
+       document.getElementById("myBtn").addEventListener
+      ("click", function(event){
+        //Stops the form submitting.
+        //Do the checks here.
+        //Sends the form.
+        document.getelementById("myForm").sumbit();}
+        );
+        </script>

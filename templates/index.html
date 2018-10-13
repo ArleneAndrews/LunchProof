@@ -35,16 +35,8 @@
     {% for spot in spots %}
       <p><div class="card">
       <h2>{{spot.place}}</h2>
-      <button id="myBtn">Update or delete this Spot</button>
-      <script>document.getElementById("myBtn").addEventListener
-      ("click", function(event){
-        //Stops the form submitting.
-        event.stopImmediatePropagation();
-            //Do the checks here.
-            //Sends the form.
-        document.getelementById("myForm").sumbit();}
-        );
-        </script>
+      <button id="myBtn">Update or delete " + spot</button>
+      
       </div></p>
       <form method="POST" action="./update">
         <input type="hidden" value="{{spot.place}}" name="oldname">
