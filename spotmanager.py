@@ -10,7 +10,7 @@ database_file = "sqlite:///{}".format(os.path.join(project_dir, "spotdatabase.db
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = database_file
 
-# app.secret_key = "Fox&Dragon"
+#app.secret_key = "Fox&Dragon"
 
 db = SQLAlchemy(app)
 
@@ -25,7 +25,7 @@ class Spot(db.Model):
     tags = db.Column(db.String(80), unique=True, nullable=False) """
    
     def __repr__(self):
-        return "<Name: {}>".format(self.place)
+        return "<Name: {}>".format(self.spot)
 
 def login_required(f):
     @wraps(f)
@@ -41,27 +41,70 @@ def login_required(f):
 @login_required
 def home():
     spots = None
+    #list_spots()
     if request.form:
-        try:
-            venue = Spot(place=request.form.get("venue")
-            # TODO: add stuff here
-            )
-            db.session.add(venue)
-            db.session.commit()
-        except Exception as e:
-            print("Failed to add spot")
-            print(e)
+    #add_spot()
+        spot = Spot(place=request.form.get("spot"))
+        print spot
+        db.session.add(spot)
+        db.session.commit()
     spots = Spot.query.all()
-    return render_template("index.html", spots=spots)
+    return render_template("index.html", spots=spots, title="Book Tutorial Mashup")
 
-@app.route("/update", methods=["POST"])
-def update():
+@app.route('/spots', methods=['GET','POST'])
+#@login_required
+def list_spots():
+    """
+    list all the spots in the db
+    """
+  
+    spots = Spot.query.all()
+    return render_template("index.html", spots=spots, title="Spots")
+    
+@app.route('/add', methods=['GET', 'POST'])
+@login_required
+def add_spot():
+    """
+    add a spot into the database
+    """
+  
+    add_spot = True
+    # instantiate the form as a SpotForm() 
+
+    #validate SpotForm submission
+    # if form.validate_on_submit():
+    #   venue = Spot(place=request.form.place.data, 
+    #                   description=request.form.desc.data)
+    try:
+        venue = Spot(place=request.form.get("venue")
+        # TODO: add stuff here
+        )
+        db.session.add(venue)
+        db.session.commit()
+        flash('Successfully added a new Spot ' + venue.name + ' to the list')
+    except Exception as e:
+        print("Failed to add spot")
+        print(e)
+    #return redirect(url_for('/spots'))
+    return redirect(url_for('/'))
+# load the spots template
+#return render_template('path/to/spots.html', action="Add",
+#                        add_spot=add_spot, form=form, title="Add A New Spot")
+
+@app.route("/update/<int:id>", methods=["GET","POST"])
+#@login_required
+def update(id):
+    """
+    Create a route to display/edit spots on a page
+    """
+    #add_spot = False
     try:
         newname = request.form.get("newname")
         oldname = request.form.get("oldname")
-        spot = Spot.query.filter_by(place=oldname).first()
+        spot = Spot.query.filter_by(id=id).first()
         spot.place = newname
         db.session.commit()
+        flash('You have edited a spot!')
     except Exception as e:
             print("Failed to update spot")
             print(e)
@@ -97,6 +140,5 @@ def logout():
     session.pop('logged_in', None)
     flash('You are now logged out. Thanks for reading!')
     return redirect(url_for('welcome'))
-  
 if __name__ == "__main__":
     app.run(debug=True)
