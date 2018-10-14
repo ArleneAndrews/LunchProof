@@ -97,6 +97,14 @@ def logout():
     session.pop('logged_in', None)
     flash('You are now logged out. Thanks for reading!')
     return redirect(url_for('welcome'))
+
+@app.route("/edit", methods=["GET", "POST"])
+@login_required
+def edit():
+    # TODO Figure out how to get name from button
+    place = request.form.get("place")
+    spot = Spot.query.filter_by(place=place).first()
+    return render_template("index.html", spots=spots)
   
 if __name__ == "__main__":
     app.run(debug=True)

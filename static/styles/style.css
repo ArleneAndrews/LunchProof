@@ -66,26 +66,16 @@ h2 {
   background-color: #f4f4f4;
   border: 1px solid #4CAF50;
   width: 60%;
-  height: 95px;
+  height: 70px;
   position: relative;
 }
 
 .card h2 {
   color: #4CAF50;
-  margin: 30px 0 12px 0;
+  margin: 12px;
 }
-.card h3 {
-  color: #4e4e4e;
-  margin-top: 0;
-  font-weight: normal;
-}
-.card h2, .card h3, .card .time {
+
+.card h2, .card  {
   font-family: Arial, sans-serif;
   font-size: 16px;
-}
-.card .time {
-  position: absolute;
-  right: 20px;
-  top: 30px;
-  color: #676767;
 }
