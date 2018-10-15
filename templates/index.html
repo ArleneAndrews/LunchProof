@@ -35,7 +35,9 @@
     {% for spot in spots %}
       <p><div class="card">
       <h2>{{spot.place}}</h2>
-      <button id="myBtn">Update or delete {{spot.place}}</button>
+      <form method="POST" action="./edit">
+        <input type="hidden" value="{{spot.place}}" name="spotname">
+        <input type="submit" value="Edit or Update">
       
       </div></p>
       <form method="POST" action="./update">
