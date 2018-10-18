@@ -10,7 +10,7 @@ database_file = "sqlite:///{}".format(os.path.join(project_dir, "spotdatabase.db
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = database_file
 
-# app.secret_key = "Fox&Dragon"
+#  app.secret_key = "Fox&Dragon"
 
 db = SQLAlchemy(app)
 
@@ -21,7 +21,7 @@ class Spot(db.Model):
     visit = db.Column(db.String(8))
     queue = db.Column(db.String(8))
     rating = db.Column(db.INT)
-    #tags = db.Column(db.String(80))
+    tags = db.Column(db.String(80))
    
     def __repr__(self):
         return "<Name: {}>".format(self.place)
@@ -43,7 +43,7 @@ def home():
     if request.form:
         try:
             venue = Spot(
-                place=request.form.get("venue"),
+                place = request.form.get("venue"),
                 address = request.form.get("address"),
                 phone = request.form.get("phone"),
                 visit = request.form.get("visit"),
