@@ -10,7 +10,7 @@ database_file = "sqlite:///{}".format(os.path.join(project_dir, "spotdatabase.db
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = database_file
 
-app.secret_key = "Fox&Dragon"
+# app.secret_key = "Fox&Dragon"
 
 db = SQLAlchemy(app)
 
@@ -42,8 +42,13 @@ def home():
     spots = None
     if request.form:
         try:
-            venue = Spot(place=request.form.get("venue")
-            # TODO: add stuff here
+            venue = Spot(
+                place=request.form.get("venue"),
+                address = request.form.get("address"),
+                phone = request.form.get("phone"),
+                visit = request.form.get("visit"),
+                queue = request.form.get("queue"),
+                rating = request.form.get("rating")
             )
             db.session.add(venue)
             db.session.commit()
@@ -100,7 +105,6 @@ def logout():
 @app.route("/edit", methods=["GET", "POST"])
 @login_required
 def edit():
-    # TODO Figure out how to get name from button
     place = request.form.get("place")
     spot = Spot.query.filter_by(place=place).first()
     return render_template("index.html", spots=spots)

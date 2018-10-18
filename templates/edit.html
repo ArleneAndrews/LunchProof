@@ -1,38 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <p>Click <a href = '/logout'>here</a> to logout.</p>
-    <div class="slidecontainer">
-        Travel range
-        <br>
-        <input id="distance" class="slider" type="range" min="500" max="50000" value="1700" />
-        
-  
-        <form name="units" action="#">
-            <label>
-                <input name="group1" type="radio" value="km" checked />
-                <span>km</span>
-            </label>
-            <label>
-                <input name="group1" type="radio" value="miles" />
-                <span>miles</span>
-            </label>
-            <br>
-            <button type="button" id="options" data-rel="popup" alt="Show all places" onclick='geoFindMe(this);'>Show me!</a>
-            <button type="button"  id="feedMe" data-rel="popup" alt="Choose a random location" onclick='geoFindMe(this);'>Feed me!</a>
-            </form>
-          </div>
-    <br>
-    <div id="out"></div>
-    <div id="out2"></div>
-    <div id="out3"></div>
-    <h2>Add a new Spot!</h2>
-    <form method="POST" action="/">
-      <input type="text" name="venue">
-      <input type="submit" value="Add">
-    </form>
-
-    <h3>Edit or Delete {{spots.place}}</h3>
-    {% for spot in spots %}
+    
       <p><div class="card">
       <h2>{{spot.place}}</h2>
       <button id="myBtn">Update or delete {{spot.place}}</button>
