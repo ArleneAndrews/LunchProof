@@ -3,14 +3,13 @@ import os
 from flask import Flask, render_template, request, redirect, url_for, session, flash, g
 from functools import wraps
 from flask_sqlalchemy import SQLAlchemy
+import settings
 
 project_dir = os.path.dirname(os.path.abspath(__file__))
 database_file = "sqlite:///{}".format(os.path.join(project_dir, "spotdatabase.db"))
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = database_file
-
-#  app.secret_key = "Fox&Dragon"
 
 db = SQLAlchemy(app)
 
@@ -106,8 +105,7 @@ def logout():
 @login_required
 def edit():
     place = request.form.get("place")
-    spot = Spot.query.filter_by(place=place).first()
-    return render_template("index.html", spots=spots)
-  
+   # spot = Spot.query.filter_by(place=place).first()
+    return (place)
 if __name__ == "__main__":
     app.run(debug=True)
