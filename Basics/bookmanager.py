@@ -67,11 +67,11 @@ def update():
 @app.route("/updatea", methods=["POST"])
 def updatea():
     try:
-            newwriter = request.form.get("newwriter")
-            oldwriter = request.form.get("oldwriter")
-            book = Book.query.filter_by(writer=oldwriter).first()
-            book.writer = newwriter
-            db.session.commit()
+        newwriter = request.form.get("newwriter")
+        oldwriter = request.form.get("oldwriter")
+        book = Book.query.filter_by(writer=oldwriter).first()
+        book.writer = newwriter
+        db.session.commit()
     except Exception as e:
         print("Couldn't update book author")
         print(e)
