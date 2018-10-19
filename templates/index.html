@@ -11,21 +11,28 @@
   {% for spot in spots %}
     <p>
     <div class="card">
-      <h2>{{spot.place}}<br>Rating {{spot.rating}}/10</h2>
-      <!-- <form method="POST" action="./edit">
-        <input type="hidden" value="{{spot.place}}" name="spotname">
-        <input type="submit" value="Edit or Update">
-        -->
-      
-      <form method="POST" action="./update">
-        <input type="hidden" value="{{spot.place}}" name="oldname">
-        <input type="text" value="{{spot.place}}" name="newname">
-        <input type="submit" value="Update">
-      </form>
-      <form method="POST" action="./delete">
-        <input type="hidden" value="{{spot.place}}" name="place">
-        <input type="submit" value="Delete">
-      </form>
+        <div class="col">
+        <h2>{{spot.place}}<br>Rating {{spot.rating}}/10</h2>
+        <form method="POST" action="./edit">
+          <input type="hidden" value="{{spot.place}}" name="spotname">
+          <input type="submit" value="Edit or Update">
+          -->
+        </div>
+
+        <div class="col">
+        <form method="POST" action="./update">
+          <input type="hidden" value="{{spot.place}}" name="oldname">
+          <input type="text" value="{{spot.place}}" name="newname">
+          <input type="submit" value="Update">
+        </form>
+      </div>
+
+      <div class="col">
+        <form method="POST" action="./delete">
+          <input type="hidden" value="{{spot.place}}" name="place">
+          <input type="submit" value="Delete">
+        </form>
+      </div>
     </div>
   </p>
 {% endfor %}

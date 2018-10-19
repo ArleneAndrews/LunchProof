@@ -107,8 +107,15 @@ def logout():
 @app.route("/edit", methods=["GET", "POST"])
 @login_required
 def edit():
-    place = request.form.get("place")
-   # spot = Spot.query.filter_by(place=place).first()
-    return (place)
+    try:
+        newname = request.form.get("newname")
+        oldname = request.form.get("oldname")
+        spot = Spot.query.filter_by(place=oldname).first()
+        spot.place = newname
+    except Exception as e:
+            print("Failed to update spot")
+            print(e)
+    return redirect("/")
+
 if __name__ == "__main__":
     app.run(debug=True)
