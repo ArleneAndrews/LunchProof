@@ -1,6 +1,6 @@
-app.secret_key = ""
+from private import *
 
-try:
-from .private import *
-except Exception:
-pass
+def secret():
+    key = key
+    print("I work this far!")
+    return key

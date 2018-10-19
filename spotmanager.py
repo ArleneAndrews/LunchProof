@@ -3,13 +3,16 @@ import os
 from flask import Flask, render_template, request, redirect, url_for, session, flash, g
 from functools import wraps
 from flask_sqlalchemy import SQLAlchemy
-import settings
+from settings import key
 
 project_dir = os.path.dirname(os.path.abspath(__file__))
 database_file = "sqlite:///{}".format(os.path.join(project_dir, "spotdatabase.db"))
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = database_file
+
+app.secret_key = key
+
 
 db = SQLAlchemy(app)
 
@@ -20,7 +23,7 @@ class Spot(db.Model):
     visit = db.Column(db.String(8))
     queue = db.Column(db.String(8))
     rating = db.Column(db.INT)
-    tags = db.Column(db.String(80))
+    
    
     def __repr__(self):
         return "<Name: {}>".format(self.place)
