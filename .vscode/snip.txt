@@ -78,3 +78,12 @@ def updatea():
   cursor: pointer;
 }
  */
+
+  """  try:
+        newname = request.form.get("newname")
+        oldname = request.form.get("oldname")
+        spot = Spot.query.filter_by(place=oldname).first()
+        spot.place = newname
+    except Exception as e:
+            print("Failed to update spot")
+            print(e) """
