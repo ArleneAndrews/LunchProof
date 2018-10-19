@@ -16,6 +16,7 @@ def updatea():
     <form method="POST" action="./updatea">
         <input type="hidden" value="{{book.writer}}" name="oldwriter">
         <input type="text" value="{{book.writer}}" name="newwriter">
+      
         <input type="submit" value="Update Author">
       </form>
 
@@ -29,3 +30,7 @@ def updatea():
         document.getelementById("myForm").sumbit();}
         );
         </script>
+
+       Slider
+
+       
