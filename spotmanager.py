@@ -104,12 +104,14 @@ def logout():
     flash('You are now logged out. Thanks for reading!')
     return redirect(url_for('welcome'))
 
-@app.route("/edit", methods=["GET", "POST"])
+@app.route("/change", methods=["GET", "POST"])
 def edit():
     here = request.form.get("spotname")
     spot = Spot.query.filter_by(place=here).first()
-    print(here)
-    print("I still work!")
+    newname = request.form.get("newname")
+    oldname = request.form.get("oldname")
+    newaddress = request.form.get("newaddress")
+    oldaddress = request.form.get("oldaddress")
     return here
 
 if __name__ == "__main__":
