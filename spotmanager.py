@@ -104,7 +104,7 @@ def logout():
     flash('You are now logged out. Thanks for reading!')
     return redirect(url_for('welcome'))
 
-@app.route("/change", methods=["GET", "POST"])
+@app.route("/change", methods=["POST"])
 def edit():
     here = request.form.get("spotname")
     spot = Spot.query.filter_by(place=here).first()

@@ -13,6 +13,9 @@
     <div class="card">
         <div class="col">
         <h2>{{spot.place}}<br>Rating {{spot.rating}}/10</h2>
+        </div>
+
+      <div class="col">
         <form method="POST" action="./change">
           <input type="hidden" value="{{spot.place}}" name="spotname">
           <input type="submit" value="Edit or Update">
