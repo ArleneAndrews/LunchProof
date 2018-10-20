@@ -2,28 +2,26 @@
 {% block content %}
 <p>Click <a href = '/logout'>here</a> to logout.</p>
     
-      <!--<p><div class="card">
-      <h2>{{spot.place}}</h2>
-      <button id="myBtn">Update or delete {{spot.place}}</button>
-       -->
-       <!-- <form method="POST" action="./update">
-          <input type="hidden" value="{{spot.place}}" name="oldname">
-          <input type="text" value="{{spot.place}}" name="newname">
-        <br>
-          <input type="hidden" value="{{spot.address}}" name="oldaddress">
-          <input type="text" value="{{spot.address}}" name="newaddress">
-        <br>
-          <input type="hidden" value="{{spot.phone}}" name="oldphone">
-          <input type="text" value="{{spot.phone}}" name="newphone">
-        <br>
-          <input type="hidden" value="{{spot.visit}}" name="oldvisit">
-          <input type="text" value="{{spot.visit}}" name="newvisit">
-        <br>
-          <input type="hidden" value="{{spot.queue}}" name="oldqueue">
-          <input type="text" value="{{spot.queue}}" name="newqueue">
-        <br>
-          <input type="hidden" value="{{spot.rating}}" name="oldrating">
-          <input type="text" value="{{spot.rating}}" name="newrating">
-        <input type="submit" value="Update"> -->
-    {% endfor %}
-    {% endblock %}
+<h2>{{spot.place}}</h2>
+<h2>Update or delete {{spot.place}}</h2>
+  
+  <form method="POST" action="./update">
+    <input type="hidden" value="{{spot.place}}" name="oldname">
+    <input type="text" value="{{spot.place}}" name="newname">
+  <br>
+    <input type="hidden" value="{{spot.address}}" name="oldaddress">
+    <input type="text" value="{{spot.address}}" name="newaddress">
+  <br>
+    <input type="hidden" value="{{spot.phone}}" name="oldphone">
+    <input type="text" value="{{spot.phone}}" name="newphone">
+  <br>
+    <input type="hidden" value="{{spot.visit}}" name="oldvisit">
+    <input type="text" value="{{spot.visit}}" name="newvisit">
+  <br>
+    <input type="hidden" value="{{spot.queue}}" name="oldqueue">
+    <input type="text" value="{{spot.queue}}" name="newqueue">
+  <br>
+    <input type="hidden" value="{{spot.rating}}" name="oldrating">
+    <input type="text" value="{{spot.rating}}" name="newrating">
+  <input type="submit" value="Update"> 
+{% endblock %}
