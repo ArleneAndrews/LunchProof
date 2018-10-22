@@ -13,7 +13,38 @@ class FlaskTestCase(unittest.TestCase):
     def test_login_page_load(self):
         tester = app.test_client(self)
         response = tester.get('/login')
-        self.assertTrue(b'Hello! Please log in.' in response.data) 
+        self.assertTrue(b'Hello! Please log in.' in response.data)
+
+    # Ensure that correct login works
+    def test_login_good_creds(self):
+        tester = app.test_client()
+        response = tester.post(
+            '/login',
+            data=dict(username="admin", password="admin"),
+            follow_redirects=True
+        )
+        self.assertTrue(b'Welcome! You are now logged in.' in response.data)
+
+    # Ensure that bad login fails
+    def test_login_bad_creds(self):
+        tester = app.test_client(self)
+        response = tester.post(
+        '/login',
+        data=dict(username="kara", password="arlene"),
+        follow_redirects=True
+        )
+        self.assertTrue(b'Invalid Credentials. Please try again.' in response.data)
+
+    # Ensure that logout passes
+    def test_logout_page_load(self):
+        tester = app.test_client(self)
+        tester.post(
+            '/login',
+            data=dict(username="admin", password="admin"),
+            follow_redirects=True
+        )
+        response = tester.get('/logout', follow_redirects=True)
+        self.assertTrue(b'You are now logged out. Thanks for reading!' in response.data)
 
 if __name__ == '__main__':
     unittest.main()
