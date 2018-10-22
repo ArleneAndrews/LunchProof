@@ -104,7 +104,7 @@ def logout():
     flash('You are now logged out. Thanks for reading!')
     return redirect(url_for('welcome'))
 
-@app.route("/change/<spotname>", methods=['GET','POST'])
+@app.route("/edit", methods=['GET','POST'])
 # I want this to come in when the button is clicked on the main page
 def change(spotname):
     spot = Spot.query.filter_by(place=place).first()
