@@ -46,5 +46,28 @@ class FlaskTestCase(unittest.TestCase):
         response = tester.get('/logout', follow_redirects=True)
         self.assertTrue(b'You are now logged out. Thanks for reading!' in response.data)
 
+    # Ensure that main page requires log in
+    def test_login_test_main(self):
+        tester = app.test_client()
+        response = tester.get('/', follow_redirects=True)
+        self.assertTrue(b'Please log in.' in response.data)
+
+    # Ensure that logout page requires log in
+    def test_login_test_logout(self):
+        tester = app.test_client()
+        response = tester.get('/logout', follow_redirects=True)
+        self.assertTrue(b'Please log in.' in response.data)
+
+    # Ensure that spots are displayed
+    def test_spot_display(self):
+        tester = app.test_client()
+        response = tester.post(
+            '/login',
+            data=dict(username="admin", password="admin"),
+            follow_redirects=True
+        )
+        self.assertTrue(b'Burger King' in response.data)
+
+
 if __name__ == '__main__':
     unittest.main()
