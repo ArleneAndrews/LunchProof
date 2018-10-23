@@ -1,1 +1,1 @@
-web: python spotmanager.py $PORT
+web: gunicorn --workers=2 spotmanger:app
