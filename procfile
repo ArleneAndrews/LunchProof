@@ -1,1 +1,1 @@
-web: waitress spotmanager:app
+web: gunnicorn spotmanager:app
