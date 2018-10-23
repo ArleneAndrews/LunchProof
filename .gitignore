@@ -5,3 +5,4 @@ private.py
 *.db
 .vscode/venv.code-snippets
 /env
+.env
