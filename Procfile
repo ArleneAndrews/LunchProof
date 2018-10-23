@@ -1,1 +1,1 @@
-web: gunicorn --workers=2 spotmanger:app
+web: gunicorn --workers=2 wsgi:app
