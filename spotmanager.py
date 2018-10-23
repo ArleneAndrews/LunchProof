@@ -3,7 +3,7 @@ import os
 from flask import Flask, render_template, request, redirect, url_for, session, flash, g
 from functools import wraps
 from flask_sqlalchemy import SQLAlchemy
-from settings import key
+# from settings import key
 
 project_dir = os.path.dirname(os.path.abspath(__file__))
 database_file = "sqlite:///{}".format(os.path.join(project_dir, "spotdatabase.db"))

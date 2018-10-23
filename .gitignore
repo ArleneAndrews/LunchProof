@@ -4,3 +4,4 @@ private.py
 *.pyc
 *.db
 .vscode/venv.code-snippets
+/env
