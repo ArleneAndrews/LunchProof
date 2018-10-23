@@ -1,0 +1,1 @@
+web: gunicorn spotmanager:app
