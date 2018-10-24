@@ -18,14 +18,11 @@
       <div class="col">
         <form method="POST" action="./edit">
           <input type="hidden" value="{{spot.place}}" name="spotname">
-          <input type="submit" value="Edit or Update">
-        </div>
-
-        <div class="col">
-        <form method="POST" action="./update">
-          <input type="hidden" value="{{spot.place}}" name="oldname">
-          <input type="text" value="{{spot.place}}" name="newname">
-          <input type="submit" value="Update">
+          <script>document.getElementById("edit").onclick = function(){
+           $.post("edit",spotname, function(){});
+           event.preventDefault();
+          }</script>
+          <button id ="edit">Edit or Update</button> 
         </form>
       </div>
 

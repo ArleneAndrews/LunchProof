@@ -3,6 +3,7 @@ import os
 from flask import Flask, render_template, request, redirect, url_for, session, flash, g
 from functools import wraps
 from flask_sqlalchemy import SQLAlchemy
+import json
 # Used for testing and dev
 from settings import key
 # Used for prod
@@ -110,8 +111,12 @@ def logout():
 @app.route("/edit", methods=['GET','POST'])
 # I want this to come in when the button is clicked on the main page
 def change():
-    place = request.form.get("place")
-    spot = Spot.query.filter_by(place=place).first()
+    place = request.get_json()
+    result = ''
+    for item in place:
+		# loop over every row
+		result += str(item['edit'])
+    spot = Spot.query.filter_by(place=result).first()
     newname = request.form.get("newname")
     oldname = request.form.get("oldname")
     newaddress = request.form.get("newaddress")
