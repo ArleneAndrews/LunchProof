@@ -1,9 +1,9 @@
 import os
 
-from flask import Flask, render_template, request, redirect, url_for, session, flash, g
+from flask import Flask, render_template, request, redirect, url_for, session, flash, g, Response
 from functools import wraps
 from flask_sqlalchemy import SQLAlchemy
-import json
+import json, random
 # Used for testing and dev
 from settings import key
 # Used for prod
@@ -108,15 +108,21 @@ def logout():
     flash('You are now logged out. Thanks for reading!')
     return redirect(url_for('welcome'))
 
+@app.route('/getJSON', methods=['GET', 'POST'])
+def someView(data):
+    if request.method == 'POST':
+        if data:
+            # Do something with data and return
+            place = request.get_json()
+            return do_stuff(data)
+        return "You have to provide data!", 400
+    return render_template('/edit'(place))
+
 @app.route("/edit", methods=['GET','POST'])
 # I want this to come in when the button is clicked on the main page
-def change():
-    place = request.get_json()
-    result = ''
-    for item in place:
-		# loop over every row
-		result += str(item['edit'])
-    spot = Spot.query.filter_by(place=result).first()
+def edit():
+    place = place
+    spot = Spot.query.filter_by(place=place).first()
     newname = request.form.get("newname")
     oldname = request.form.get("oldname")
     newaddress = request.form.get("newaddress")
