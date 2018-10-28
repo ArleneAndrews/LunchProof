@@ -106,3 +106,5 @@ def edit():
     newrating = request.form.get("newrating")
     oldrating = request.form.get("oldrating")
     return render_template('edit.html', spot=place)
+
+    
