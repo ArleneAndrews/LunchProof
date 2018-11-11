@@ -23,7 +23,7 @@
           var venue = {};
           document.getElementById("edit").onclick = function(){
             var myObj= {"name":spotname}
-            venue += JSON.stringify("myObj");
+            var venue = JSON.stringify($("myObj").serializeArray());
            $.post(venue, function(){});
            event.preventDefault();
           }
