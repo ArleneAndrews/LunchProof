@@ -20,12 +20,11 @@
         <input type="hidden" value="{{spot.place}}" name="spotname"> 
           <script type="text/javascript">
           // setup some JSON to use
-          var venue = {};
           document.getElementById("edit").onclick = function(){
-            var myObj= {"name":spotname}
-            var venue = JSON.stringify($("myObj").serializeArray());
-           $.post(venue, function(){});
-           event.preventDefault();
+          var myObj= {"name":spotname}
+          var venue = JSON.stringify($("myObj").serializeArray());
+          $.post(venue, function(){});
+          event.preventDefault();
           }
           </script>
           <button id ="edit">Edit or Update</button> 

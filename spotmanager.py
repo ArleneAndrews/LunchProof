@@ -109,31 +109,12 @@ def logout():
     return redirect(url_for('welcome'))
 
 @app.route('/edit', methods=['POST'])
-def someView():
+def edit():
     if request.method == 'POST':
-       print(request.json.get('venue', {}).get('name', ''))
-        # if data:
-            # Do something with data and return
-            
-
-    """ def edit():
-            place = place
-            spot = Spot.query.filter_by(place=place).first()
-            newname = request.form.get("newname")
-            oldname = request.form.get("oldname")
-            newaddress = request.form.get("newaddress")
-            oldaddress = request.form.get("oldaddress")
-            newphone = request.form.get("newphone")
-            oldphone = request.form.get("oldphone")
-            newvisit = request.form.get("newvisit")
-            oldvisit = request.form.get("oldvisit")
-            newqueue = request.form.get("newqueue")
-            oldqueue = request.form.get("oldqueue")
-            newrating = request.form.get("newrating")
-            oldrating = request.form.get("oldrating") 
-
-        return "You have to provide data!", 400"""
-    return render_template('/edit'(place))
+        place = request.get_json
+        print(place)
+        spot = Spot.query.filter_by(place=place).first()
+    return render_template('/edit')
 
 if __name__ == "__main__":
     app.run(debug=True)
