@@ -16,16 +16,18 @@
         </div>
 
       <div class="col">
-        <form method="POST" action="./change">
-          <input type="hidden" value="{{spot.place}}" name="spotname">
-          <input type="submit" value="Edit or Update">
-        </div>
-
-        <div class="col">
-        <form method="POST" action="./update">
-          <input type="hidden" value="{{spot.place}}" name="oldname">
-          <input type="text" value="{{spot.place}}" name="newname">
-          <input type="submit" value="Update">
+        <form method="POST" action="./edit">
+        <input type="hidden" value="{{spot.place}}" name="spotname"> 
+          <script type="text/javascript">
+          // setup some JSON to use
+          document.getElementById("edit").onclick = function(){
+          var myObj= {"name":spotname}
+          var venue = JSON.stringify($("myObj").serializeArray());
+          $.post(venue, function(){});
+          event.preventDefault();
+          }
+          </script>
+          <button id ="edit">Edit or Update</button> 
         </form>
       </div>
 

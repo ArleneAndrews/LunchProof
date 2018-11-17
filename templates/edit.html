@@ -2,11 +2,11 @@
 {% block content %}
 <p>Click <a href = '/logout'>here</a> to logout.</p>
     
-<h2>{{spot.place}}</h2>
+<h2>{{place}}</h2>
 <h2>Update or delete {{spot.place}}</h2>
   
   <form method="POST" action="./update">
-    <input type="hidden" value="{{spot.place}}" name="oldname">
+  Name:  <input type="hidden" value="{{spot.place}}" name="oldname">
     <input type="text" value="{{spot.place}}" name="newname">
   <br>
     <input type="hidden" value="{{spot.address}}" name="oldaddress">

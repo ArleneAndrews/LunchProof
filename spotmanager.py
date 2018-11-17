@@ -1,12 +1,13 @@
 import os
 
-from flask import Flask, render_template, request, redirect, url_for, session, flash, g
+from flask import Flask, render_template, request, redirect, url_for, session, flash, g, Response, json
 from functools import wraps
 from flask_sqlalchemy import SQLAlchemy
+
 # Used for testing and dev
-# from settings import key
+from settings import key
 # Used for prod
-key = os.environ.get('key')
+# key = os.environ.get('key')
 
 project_dir = os.path.dirname(os.path.abspath(__file__))
 database_file = "sqlite:///{}".format(os.path.join(project_dir, "spotdatabase.db"))
@@ -107,23 +108,13 @@ def logout():
     flash('You are now logged out. Thanks for reading!')
     return redirect(url_for('welcome'))
 
-@app.route("/edit", methods=['GET','POST'])
-# I want this to come in when the button is clicked on the main page
-def change(spotname):
-    spot = Spot.query.filter_by(place=place).first()
-    newname = request.form.get("newname")
-    oldname = request.form.get("oldname")
-    newaddress = request.form.get("newaddress")
-    oldaddress = request.form.get("oldaddress")
-    newphone = request.form.get("newphone")
-    oldphone = request.form.get("oldphone")
-    newvisit = request.form.get("newvisit")
-    oldvisit = request.form.get("oldvisit")
-    newqueue = request.form.get("newqueue")
-    oldqueue = request.form.get("oldqueue")
-    newrating = request.form.get("newrating")
-    oldrating = request.form.get("oldrating")
-    return render_template('edit.html', spot=here)
+@app.route('/edit', methods=['POST'])
+def edit():
+    if request.method == 'POST':
+        place = request.get_json
+        print(place)
+        spot = Spot.query.filter_by(place=place).first()
+    return render_template('/edit')
 
 if __name__ == "__main__":
     app.run(debug=True)
