@@ -7,6 +7,8 @@
       <input type="submit" value="Add">
     </form>
 
+  <!-- Pulls data from the user's database, & displays it in ENTRY order
+  TODO add various other display options -->
   <h3>Visited Spots</h3>
   {% for spot in spots %}
     <p>
@@ -14,7 +16,7 @@
         <div class="col">
         <h2>{{spot.place}}<br>Rating {{spot.rating}}/10</h2>
         </div>
-
+<!-- Edit button ERRORS - this section works, but leaving ERRO note until the whole thing works -->
       <div class="col">
         <form method="POST" action="./edit">
         <input type="hidden" value="{{spot.place}}" name="spotname"> 
@@ -23,14 +25,17 @@
           document.getElementById("edit").onclick = function(){
           var myObj= {"name":spotname}
           var venue = JSON.stringify($("myObj").serializeArray());
+          //this section posts the JSON, and prevents the auto trigger of the button
           $.post(venue, function(){});
-          event.preventDefault();
+          event.preventDefault(); 
           }
           </script>
           <button id ="edit">Edit or Update</button> 
         </form>
       </div>
 
+      <!-- Will delete Spot and data from the table 
+      TODO Need to add an "Are you SURE?" warning-->
       <div class="col">
         <form method="POST" action="./delete">
           <input type="hidden" value="{{spot.place}}" name="place">

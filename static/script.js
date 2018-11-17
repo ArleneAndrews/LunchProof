@@ -8,6 +8,7 @@ var key = "";
 var slider = document.getElementById('distance');
 
 //Radius setting
+// Not a11y friendly - need to add box back in when this feature is ready
 function territory() {
   far = slider.value;
   var output = document.getElementById("out");
@@ -20,7 +21,6 @@ function territory() {
     output.innerHTML = '<p>Radius is ' + kms + ' km </p>';
   }
 }
-
 
 //finds correct function
 function mode() {
@@ -37,6 +37,7 @@ function mode() {
   }
 };
 
+/* Swiped straight from the Mozilla documents on geolocation */
 function geoFindMe(source) {
   buttonmode = source.id;
   var output = document.getElementById("out");
@@ -49,7 +50,7 @@ function geoFindMe(source) {
   function success(position) {
     lat = position.coords.latitude;
     lon = position.coords.longitude;
-    //output.innerHTML = '<p>Latitude is ' + lat + '° <br>Longitude is ' + lon + '°</p>';
+    // test for usablilty remove when done output.innerHTML = '<p>Latitude is ' + lat + '° <br>Longitude is ' + lon + '°</p>';
     territory();
     mode();
   }
@@ -63,9 +64,11 @@ function geoFindMe(source) {
   }
 }
 
+// TODO: This feature is for a future realease - when it pulls data from Google Places or other spots
+//    ----------- Since Google Maps now has a fee, this section disabled for the moment ---------
 function findSpots() {
   console.log("It works thus far!");
-  // MOVED CODE STARTS HERE
+  // MOVED CODE STARTS HERE clearing old map thanks Mikerg at Coding Blocks
   var mydiv = document.getElementById('out3');
   while (mydiv.firstChild) {
     mydiv.removeChild(mydiv.firstChild);
@@ -75,6 +78,7 @@ function findSpots() {
   output.innerHTML = "<p>Works this far!</p>";
   var places = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lat + "," + lon + "&radius=" + far + "&types=restaurant&key=" + placekey;
   get(places, {
+    //NEED TO CHECK THIS IS SERVER SIDE!! !important
       mode: 'no-cors'
     })
     .then(function (response) {
