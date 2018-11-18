@@ -88,7 +88,7 @@ class FlaskTestCase(unittest.TestCase):
     # TODO Client side bad input for login BOTH BOXES
     # TODO Server side validation
     # TODO GDPR
-    # TODO 
+    # TODO Jest for HTML
 
 
 if __name__ == '__main__':
