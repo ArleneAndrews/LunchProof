@@ -4,7 +4,8 @@
   <head>
     <title>Random Lunch App v0.0.1</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
-   <!--  <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+   <!--  TODO: need to fix this
+    <link rel="icon" href="favicon.ico" type="image/x-icon"/>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   </head>
@@ -21,5 +22,14 @@
                 {{ message }}
             {% endfor %}
         </div>
+        <!--TODO LIST:
+        a11y/aria tags
+        favicon
+        data change warnings
+        data display options
+        nonsense/bad type on client side checks
+        verification on server side
+        GDPR comply notes
+        -->
     </body>
 </html>

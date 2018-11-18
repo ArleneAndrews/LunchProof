@@ -7,8 +7,7 @@
       <input type="submit" value="Add">
     </form>
 
-  <!-- Pulls data from the user's database, & displays it in ENTRY order
-  TODO add various other display options -->
+  <!-- Pulls data from the user's database, & displays it in ENTRY order -->
   <h3>Visited Spots</h3>
   {% for spot in spots %}
     <p>
@@ -16,7 +15,7 @@
         <div class="col">
         <h2>{{spot.place}}<br>Rating {{spot.rating}}/10</h2>
         </div>
-<!-- Edit button ERRORS - this section works, but leaving ERRO note until the whole thing works -->
+<!-- Edit button ERRORS - this section works, but leaving ERROR note until the whole thing works -->
       <div class="col">
         <form method="POST" action="./edit">
         <input type="hidden" value="{{spot.place}}" name="spotname"> 
@@ -34,8 +33,7 @@
         </form>
       </div>
 
-      <!-- Will delete Spot and data from the table 
-      TODO Need to add an "Are you SURE?" warning-->
+      <!-- Will delete Spot and data from the table -->
       <div class="col">
         <form method="POST" action="./delete">
           <input type="hidden" value="{{spot.place}}" name="place">

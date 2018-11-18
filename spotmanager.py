@@ -3,7 +3,7 @@ import os
 from flask import Flask, render_template, request, redirect, url_for, session, flash, g, Response, json
 from functools import wraps
 from flask_sqlalchemy import SQLAlchemy
-
+# TODO: get this double setting removed
 # Used for testing and dev
 from settings import key
 # Used for prod
