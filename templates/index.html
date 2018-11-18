@@ -7,6 +7,7 @@
       <input type="submit" value="Add">
     </form>
 
+  <!-- Pulls data from the user's database, & displays it in ENTRY order -->
   <h3>Visited Spots</h3>
   {% for spot in spots %}
     <p>
@@ -14,21 +15,25 @@
         <div class="col">
         <h2>{{spot.place}}<br>Rating {{spot.rating}}/10</h2>
         </div>
-
+<!-- Edit button ERRORS - this section works, but leaving ERROR note until the whole thing works -->
       <div class="col">
-        <form method="POST" action="./change">
-          <input type="hidden" value="{{spot.place}}" name="spotname">
-          <input type="submit" value="Edit or Update">
-        </div>
-
-        <div class="col">
-        <form method="POST" action="./update">
-          <input type="hidden" value="{{spot.place}}" name="oldname">
-          <input type="text" value="{{spot.place}}" name="newname">
-          <input type="submit" value="Update">
+        <form method="POST" action="./edit">
+        <input type="hidden" value="{{spot.place}}" name="spotname"> 
+          <script type="text/javascript">
+          // setup some JSON to use
+          document.getElementById("edit").onclick = function(){
+          var myObj= {"name":spotname}
+          var venue = JSON.stringify($("myObj").serializeArray());
+          //this section posts the JSON, and prevents the auto trigger of the button
+          $.post(venue, function(){});
+          event.preventDefault(); 
+          }
+          </script>
+          <button id ="edit">Edit or Update</button> 
         </form>
       </div>
 
+      <!-- Will delete Spot and data from the table -->
       <div class="col">
         <form method="POST" action="./delete">
           <input type="hidden" value="{{spot.place}}" name="place">

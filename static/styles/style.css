@@ -1,3 +1,4 @@
+/*used with Google Places or other services */
 #map {
   height: 100%;
 }
@@ -31,7 +32,7 @@ h2 {
   font-family: Arial, sans-serif;
   font-size: 16px;
 }
-
+/* display to avoid fat finger errors */
 .col {
   display: table-cell;
   width: 33.33%;

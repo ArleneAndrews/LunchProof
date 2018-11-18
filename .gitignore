@@ -1,8 +1,6 @@
 gitignore
-/venv
+env/*
 private.py
 *.pyc
 *.db
-.vscode/venv.code-snippets
-/env
-.env
+.vscode/*

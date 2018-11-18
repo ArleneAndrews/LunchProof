@@ -58,7 +58,7 @@ class FlaskTestCase(unittest.TestCase):
         response = tester.get('/logout', follow_redirects=True)
         self.assertTrue(b'Please log in.' in response.data)
 
-    # Ensure that spots are displayed
+    # Ensure that spots are displayed - needs updated for actual data passed
     def test_spot_display(self):
         tester = app.test_client()
         response = tester.post(
@@ -67,6 +67,28 @@ class FlaskTestCase(unittest.TestCase):
             follow_redirects=True
         )
         self.assertTrue(b'Burger King' in response.data)
+
+    # TODO Edit page
+    # TODO Welcome page
+    # TODO edit update each item
+    # TODO DB write
+    # TODO DB read
+    # TODO DB update
+    # TODO API Call
+    # TODO DB create
+    # TODO User table
+    # TODO New account
+    # TODO delete account
+    # TODO Change account
+    # TODO AUTH!
+    # TODO entry box security - API
+    # TODO Alternate log ins if decided on
+    # TODO Credits
+    # TODO Remove fixed DB on Heroku, once the edit page works
+    # TODO Client side bad input for login BOTH BOXES
+    # TODO Server side validation
+    # TODO GDPR
+    # TODO Jest for HTML
 
 
 if __name__ == '__main__':

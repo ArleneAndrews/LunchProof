@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template, request, redirect, url_for, session, flash, g
+from flask import Flask, render_template, request, redirect, url_for, session, flash, g, Response, json
 from functools import wraps
 from flask_sqlalchemy import SQLAlchemy
 # Used for testing and dev
@@ -20,6 +20,7 @@ app.secret_key = key
 
 db = SQLAlchemy(app)
 
+# basic model for data - returns the name of the Spot
 class Spot(db.Model):
     place = db.Column(db.String(80), unique=True, nullable=False, primary_key=True)
     address = db.Column(db.String(80))
@@ -32,6 +33,7 @@ class Spot(db.Model):
     def __repr__(self):
         return "<Name: {}>".format(self.place)
 
+# Wrapper for login - ease of use and portability
 def login_required(f):
     @wraps(f)
     def wrap(*args, **kwargs):
@@ -42,6 +44,7 @@ def login_required(f):
                 return redirect(url_for('login'))
     return wrap
 
+# Basic index form - showing all fields that will eventually be needed
 @app.route("/", methods=["GET", "POST"])
 @login_required
 def home():
@@ -64,6 +67,7 @@ def home():
     spots = Spot.query.all()
     return render_template("index.html", spots=spots)
 
+# Update Individual Spot - button access
 @app.route("/update", methods=["POST"])
 def update():
     try:
@@ -77,6 +81,7 @@ def update():
             print(e)
     return redirect("/")
 
+# Delete Individual Spot - button access
 @app.route("/delete", methods=["POST"])
 def delete():
     place = request.form.get("place")
@@ -85,14 +90,16 @@ def delete():
     db.session.commit()
     return redirect("/")
 
+# Welcome Page - Currently (Nov 17) not the landing page
 @app.route('/welcome')
 def welcome():
     return render_template('welcome.html')
 
+# Login Page - Currently (Nove 17) the opening page
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     error = None
-    if request.method == 'POST':
+    if request.method == 'POST': # Fixed credentials while building
         if request.form['username'] != 'admin' or request.form['password'] != 'admin':
             error = 'Invalid Credentials. Please try again.'
         else:
@@ -101,6 +108,7 @@ def login():
             return redirect(url_for('home'))
     return render_template('login.html', error=error)
 
+# Logout page - only route to Welcome page currently (Nov 17)
 @app.route('/logout')
 @login_required
 def logout():
@@ -108,23 +116,16 @@ def logout():
     flash('You are now logged out. Thanks for reading!')
     return redirect(url_for('welcome'))
 
-@app.route("/edit", methods=['GET','POST'])
-# I want this to come in when the button is clicked on the main page
-def change(spotname):
-    spot = Spot.query.filter_by(place=place).first()
-    newname = request.form.get("newname")
-    oldname = request.form.get("oldname")
-    newaddress = request.form.get("newaddress")
-    oldaddress = request.form.get("oldaddress")
-    newphone = request.form.get("newphone")
-    oldphone = request.form.get("oldphone")
-    newvisit = request.form.get("newvisit")
-    oldvisit = request.form.get("oldvisit")
-    newqueue = request.form.get("newqueue")
-    oldqueue = request.form.get("oldqueue")
-    newrating = request.form.get("newrating")
-    oldrating = request.form.get("oldrating")
-    return render_template('edit.html', spot=here)
+# Edit method - get JSON from HTML, and triggers a DB query ERRORS
+# TODO This section works, but not clearing until it all works
+# TODO Needs login confirmation
+@app.route('/edit', methods=['POST'])
+def edit():
+    if request.method == 'POST':
+        place = request.get_json
+        print(place)
+        spot = Spot.query.filter_by(place=place).first()
+    return render_template('/edit')
 
 if __name__ == "__main__":
     app.run(debug=False)
