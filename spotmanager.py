@@ -127,4 +127,4 @@ def change(spotname):
     return render_template('edit.html', spot=here)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
